@@ -5,30 +5,26 @@ input = sys.stdin.readline
 N = int(input().rstrip())
 M = int(input().rstrip())
 
-p = "I" + ("OI" * N)
 S = input().rstrip()
 
 
 idx = 0
+result = 0
 cnt = 0
 
-while idx < M-(N*2):
-    if S[idx] == "O":
-        idx += 1
-        continue
-    else:
-        i = idx + 1
-        if S[i] == "O":
-            new_word = S[idx:idx+len(p)]
-            # print(new_word)
+while idx < M-2:
+    if S[idx:idx+3] == "IOI":
+        result += 1
 
-            if new_word == p:
-                cnt += 1
-            
-            idx += 2
-        else:
-            idx += 1
-            continue
+        if result == N:
+            result -= 1
+            cnt += 1
+        
+        idx += 2
+
+    else:
+        result = 0
+        idx += 1
 
 
 print(cnt)
